@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock, Paper, Scissors</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <script>
+            let playerScore = 0;
+            let computerScore = 0;
+        
+        function computerPlay() {
+             let choice = Math.floor(Math.random() * 3 + 1);
+             let computerSelection;
+             if (choice == 1) {
+                computerSelection = 'rock';
+             }
+             else if (choice == 2) {
+                computerSelection = 'paper';
+             }
+             else if (choice == 3) {
+                computerSelection = 'scissors';
+             }
+             
+             console.log(computerSelection);
+             return computerSelection;
+
+         } 
+
+         function playerPlay() {
+             let playerEntry = window.prompt("Rock, paper or scissors?");
+             let playerSelection = playerEntry.toLowerCase();
+             return playerSelection;
+         }
+
+         function playRound(playerSelection, computerSelection) {
+
+            if ( (playerSelection == 'rock' && computerSelection == 'rock') || 
+                 (playerSelection == 'paper' && computerSelection == 'paper') ||
+                (playerSelection == 'scissors' && computerSelection == 'scissors') ) {
+                console.log("Tie Game!");
+                return;
+                }
+            else if ( (playerSelection == 'rock' && computerSelection == 'paper') || 
+                      (playerSelection == 'paper' && computerSelection == 'scissors') ||
+                      (playerSelection == 'scissors' && computerSelection == 'rock') ) {
+                          computerScore++;
+                          console.log("You lose the round, computer's " + computerSelection + " beats your " + playerSelection);
+                          return; 
+                      }
+            else if ( (playerSelection == 'paper' && computerSelection == 'rock') || 
+                      (playerSelection == 'scissors' && computerSelection == 'paper') ||
+                      (playerSelection == 'rock' && computerSelection == 'scissors') ) {
+                          playerScore++;
+                          console.log("You win the round, your " + playerSelection + " beats the computer's " + computerSelection)
+                          return;
+                      }
+            else {
+                console.log("Invalid entry. Please enter rock, paper, or scissors.")
+                return;
+            }
+         }
+
+         function game() {
+             let round = 0;
+             while (round < 5) {
+                playRound(playerPlay(), computerPlay());
+                round++;
+            }
+             if (playerScore > computerScore) {
+                console.log("You win! Your score of " + playerScore + " beats the computer's score of " + computerScore + ".");
+            }
+            else if (computerScore > playerScore) {
+                console.log("You lose! Your score of " + playerScore + " is lower than the computer's score of " + computerScore + ".");
+            }
+            else {
+                console.log("Tie game! Try again next time.");
+            }
+                
+
+        }
+         
+        game();
+         
+       
+        </script>
+    </body>
+</html>
